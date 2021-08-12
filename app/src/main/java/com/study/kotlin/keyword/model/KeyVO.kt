@@ -1,6 +1,6 @@
 package com.study.kotlin.keyword.model
 
-class Key (
+class KeyVO (
     var id:Int = -1,
     var title:String = "",
 
