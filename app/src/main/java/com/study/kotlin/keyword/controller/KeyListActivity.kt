@@ -1,6 +1,8 @@
 package com.study.kotlin.keyword.controller;
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.study.kotlin.keyword.R
 import com.study.kotlin.keyword.controller.base.BaseActivity
@@ -12,5 +14,11 @@ public class KeyListActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.key_list)
         setupToolBar(toolBar, "Lista de Chaves", false)
+    }
+
+    fun goToCreate(view: View) {
+
+        var intent:Intent = Intent(this, CreateKeyActivity::class.java)
+        startActivity(intent);
     }
 }
