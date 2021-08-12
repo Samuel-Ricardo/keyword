@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     fun next_page(view: View) {
 
-        val intent:Intent = Intent(this)
+        val nextPage:Intent = Intent(this, KeyListActivity::class.java)
+        startActivity(nextPage);
     }
 }
