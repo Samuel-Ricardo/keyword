@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bottom_gradient"
-    tools:context=".MainActivity">
+    tools:context=".controller.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,6 +46,7 @@
         android:text="Começar"
         android:textColor="#FF6B00"
         android:textSize="28dp"
+        android:onClick="next_page"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
