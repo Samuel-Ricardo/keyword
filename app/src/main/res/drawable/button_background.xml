@@ -13,7 +13,7 @@
 
     <stroke
         android:color="#fff"
-        android:stroke="100dp"
+        android:width="0dp"
         >
 
     </stroke>
