@@ -1,7 +1,7 @@
 package com.study.kotlin.keyword.controller.base
 
 import android.view.MenuItem
-import android.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.study.kotlin.keyword.R
 import kotlinx.android.synthetic.main.example_list.*
