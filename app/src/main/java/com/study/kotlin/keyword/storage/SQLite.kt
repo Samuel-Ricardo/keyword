@@ -1,8 +1,10 @@
 package com.study.kotlin.keyword.storage
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.study.kotlin.keyword.model.KeyVO
 
 class SQLite(
     context:Context
@@ -48,5 +50,21 @@ class SQLite(
         onCreate(database)
     }
 
-    //fun createKey
+    fun saveKey(key: KeyVO): Boolean {
+
+        val database = writableDatabase ?: return
+        var content = ContentValues()
+
+        content.put(COLUMNS_NAME, key.title)
+        content.put(COLUMNS_LOGIN, key.login)
+        content.put(COLUMNS_PASSWORD, key.password)
+
+        database.insert(
+            TABLE_NAME,
+            null,
+            content
+        )
+
+        database.close();
+    }
 }
