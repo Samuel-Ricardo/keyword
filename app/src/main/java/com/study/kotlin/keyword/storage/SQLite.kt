@@ -52,7 +52,7 @@ class SQLite(
 
     fun saveKey(key: KeyVO): Boolean {
 
-        val database = writableDatabase ?: return
+        val database = writableDatabase
 
         try {
             database.insert(
@@ -82,4 +82,13 @@ class SQLite(
         return content;
     }
 
+    fun deleteKey(id:Int):Boolean {
+
+        val database = writableDatabase
+        val sql = "DELETE FROM $TABLE_NAME WHERE $COLUMNS_ID = ?"
+        val args = arrayOf("$id")
+
+        database.execSQL(sql,args)
+        database.close()
+    }
 }
