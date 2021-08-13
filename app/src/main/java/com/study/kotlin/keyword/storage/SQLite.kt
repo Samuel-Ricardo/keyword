@@ -9,6 +9,7 @@ import com.study.kotlin.keyword.model.KeyVO
 import com.study.kotlin.keyword.singleton.database.COLUMNS
 import com.study.kotlin.keyword.singleton.database.DatabaseConstats.TABLE_NAME
 import com.study.kotlin.keyword.singleton.database.SQL.CREATE_TABLE
+import com.study.kotlin.keyword.singleton.database.SQL.DELETE_BY_ID
 import com.study.kotlin.keyword.singleton.database.SQL.DROP_TABLE
 import com.study.kotlin.keyword.singleton.database.SQL.SELECT_ALL
 
@@ -22,8 +23,8 @@ class SQLite(
 ) {
 
     companion object {
-        private val DATABASE_NAME = "keyword.db"
-        private val CURRENT_VERSION = 1
+        private const val DATABASE_NAME = "keyword.db"
+        private const val CURRENT_VERSION = 1
     }
 
 
@@ -119,13 +120,11 @@ class SQLite(
 
     fun deleteKey(id: Int): Boolean {
 
-        val sql = "DELETE FROM ${TABLE_NAME} WHERE ${COLUMNS.ID}" +
-                "ID = ?"
         val args = arrayOf("$id")
 
         try {
 
-            execSQL(sql, args)
+            execSQL(DELETE_BY_ID, args)
 
             return true
         } catch (ex: Exception) {
