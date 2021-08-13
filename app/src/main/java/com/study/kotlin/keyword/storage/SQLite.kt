@@ -36,4 +36,17 @@ class SQLite(
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(CREATE_TABLE)
     }
+
+    override fun onUpgrade(
+        database: SQLiteDatabase?,
+        oldVersion:Int,
+        newVersion:Int){
+
+        if (oldVersion != newVersion) {
+            database?.execSQL(DROP_TABLE)
+        }
+        onCreate(database)
+    }
+
+
 }
