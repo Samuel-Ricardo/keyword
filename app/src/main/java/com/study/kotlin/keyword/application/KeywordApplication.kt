@@ -12,5 +12,9 @@ class KeywordApplication: Application() {
         lateinit var instance: KeywordApplication
     }
 
-
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+        database = SQLite(this)
+    }
 }
