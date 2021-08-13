@@ -7,17 +7,17 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.study.kotlin.keyword.model.KeyVO
 
 class SQLite(
-    context:Context
-): SQLiteOpenHelper(
+    context: Context
+) : SQLiteOpenHelper(
     context,
     DATABASE_NAME,
     null,
     CURRENT_VERSION
-){
-    
+) {
+
     companion object {
         private val DATABASE_NAME = "keyword.db"
-        private val CURRENT_VERSION =  1
+        private val CURRENT_VERSION = 1
     }
 
     val TABLE_NAME = "key"
@@ -41,8 +41,9 @@ class SQLite(
 
     override fun onUpgrade(
         database: SQLiteDatabase?,
-        oldVersion:Int,
-        newVersion:Int){
+        oldVersion: Int,
+        newVersion: Int
+    ) {
 
         if (oldVersion != newVersion) {
             database?.execSQL(DROP_TABLE)
@@ -61,7 +62,7 @@ class SQLite(
                 getContentFrom(key)
             )
 
-        }catch(ex: Exception){
+        } catch (ex: Exception) {
 
             database.close();
             return false;
@@ -70,6 +71,49 @@ class SQLite(
         database.close();
         return true;
     }
+
+    fun deleteKey(id: Int): Boolean {
+
+        val sql = "DELETE FROM $TABLE_NAME WHERE $COLUMNS_ID = ?"
+        val args = arrayOf("$id")
+
+        try {
+
+            execSQL(sql, args)
+
+            return true
+        } catch (ex: Exception) {
+
+            return false
+        }
+    }
+
+    fun updateKey(key: KeyVO): Boolean {
+
+        val sql = "UPDATE $TABLE_NAME" +
+                " SET" +
+                "$COLUMNS_NAME = ?" +
+                "$COLUMNS_LOGIN = ?" +
+                "$COLUMNS_PASSWORD = ?" +
+                " WHERE $COLUMNS_ID = ? "
+        val args = arrayOf(
+            key.title,
+            key.login,
+            key.password,
+            key.id,
+        )
+
+        try {
+
+            execSQL(sql, args)
+
+            return true
+        } catch (ex: Exception) {
+
+            return false
+        }
+    }
+
 
     fun getContentFrom(key: KeyVO): ContentValues {
 
@@ -82,30 +126,13 @@ class SQLite(
         return content;
     }
 
-    fun deleteKey(id:Int):Boolean {
-
-        val database = writableDatabase
-        val sql = "DELETE FROM $TABLE_NAME WHERE $COLUMNS_ID = ?"
-        val args = arrayOf("$id")
-
-        try {
-
-            execSQL(database, sql, args)
-
-            return true
-        }catch (ex:Exception){
-
-            return false
-        }
-    }
-
     fun execSQL(
-        database: SQLiteDatabase,
         sql: String,
-        args: Array<String>
+        args: Array<*>
     ) {
+        val database = writableDatabase
 
-        database.execSQL(sql,args)
+        database.execSQL(sql, args)
         database.close()
     }
 }
