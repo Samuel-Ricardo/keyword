@@ -23,7 +23,7 @@ class SQLite(
     val COLUMNS_NAME = "name"
     val COLUMNS_LOGIN = "login"
     val COLUMNS_PASSWORD = "password"
-    val DROP_TABLE = "DROP TABLE IF EXIST $TABLE_NAME"
+    val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
     val CREATE_TABLE = "CREATE TABLE $TABLE_NAME (" +
             "$COLUMNS_ID INTEGER NOT NULL," +
             "$COLUMNS_NAME TEXT NOT NULL," +
@@ -48,5 +48,5 @@ class SQLite(
         onCreate(database)
     }
 
-
+    //fun createKey
 }

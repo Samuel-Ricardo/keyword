@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import com.study.kotlin.keyword.R
 import com.study.kotlin.keyword.controller.base.BaseActivity
-import kotlinx.android.synthetic.main.example_list.*
 
 class MainActivity : BaseActivity() {
 
@@ -14,9 +13,9 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun next_page(view: View) {
+    fun nextPage(view: View) {
 
-        val nextPage:Intent = Intent(this, KeyListActivity::class.java)
-        startActivity(nextPage);
+        val intent: Intent = Intent(this, KeyListActivity::class.java)
+        startActivity(intent);
     }
 }
