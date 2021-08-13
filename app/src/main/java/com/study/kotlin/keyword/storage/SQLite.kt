@@ -53,18 +53,33 @@ class SQLite(
     fun saveKey(key: KeyVO): Boolean {
 
         val database = writableDatabase ?: return
+
+        try {
+            database.insert(
+                TABLE_NAME,
+                null,
+                getContentFrom(key)
+            )
+
+        }catch(ex: Exception){
+
+            database.close();
+            return false;
+        }
+
+        database.close();
+        return true;
+    }
+
+    fun getContentFrom(key: KeyVO): ContentValues {
+
         var content = ContentValues()
 
         content.put(COLUMNS_NAME, key.title)
         content.put(COLUMNS_LOGIN, key.login)
         content.put(COLUMNS_PASSWORD, key.password)
 
-        database.insert(
-            TABLE_NAME,
-            null,
-            content
-        )
-
-        database.close();
+        return content;
     }
+
 }
