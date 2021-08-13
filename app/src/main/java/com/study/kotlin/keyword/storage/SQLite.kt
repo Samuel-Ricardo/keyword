@@ -88,6 +88,23 @@ class SQLite(
         val sql = "DELETE FROM $TABLE_NAME WHERE $COLUMNS_ID = ?"
         val args = arrayOf("$id")
 
+        try {
+
+            execSQL(database, sql, args)
+
+            return true
+        }catch (ex:Exception){
+
+            return false
+        }
+    }
+
+    fun execSQL(
+        database: SQLiteDatabase,
+        sql: String,
+        args: Array<String>
+    ) {
+
         database.execSQL(sql,args)
         database.close()
     }
