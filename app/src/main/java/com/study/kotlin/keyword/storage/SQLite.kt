@@ -6,7 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.study.kotlin.keyword.model.KeyVO
-import com.study.kotlin.keyword.singleton.database.DatabaseConstats.COLUMNS_ID
+import com.study.kotlin.keyword.singleton.database.DatabaseConstats.SQLs
 
 class SQLite(
     context: Context
