@@ -2,9 +2,7 @@ package com.study.kotlin.keyword.singleton.database
 
 
 
-class SQL(
-    val COLUMNS:Columns
-) {
+object SQL {
     val SELECT_ALL = "SELECT * FROM ${DatabaseConstats.TABLE_NAME}"
     val DROP_TABLE = "DROP TABLE IF EXISTS ${DatabaseConstats.TABLE_NAME}"
     val CREATE_TABLE = "CREATE TABLE ${DatabaseConstats.TABLE_NAME} (" +

@@ -1,6 +1,6 @@
 package com.study.kotlin.keyword.singleton.database
 
-class Columns {
+object COLUMNS {
 
     val ID = "id"
     val NAME = "name"

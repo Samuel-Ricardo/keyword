@@ -6,7 +6,11 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.study.kotlin.keyword.model.KeyVO
-import com.study.kotlin.keyword.singleton.database.DatabaseConstats.SQLs
+import com.study.kotlin.keyword.singleton.database.COLUMNS
+import com.study.kotlin.keyword.singleton.database.DatabaseConstats.TABLE_NAME
+import com.study.kotlin.keyword.singleton.database.SQL.CREATE_TABLE
+import com.study.kotlin.keyword.singleton.database.SQL.DROP_TABLE
+import com.study.kotlin.keyword.singleton.database.SQL.SELECT_ALL
 
 class SQLite(
     context: Context
@@ -52,10 +56,10 @@ class SQLite(
         while (cursor.moveToNext()){
 
             var key = KeyVO(
-                cursor.getInt(cursor.getColumnIndex(COLUMNS_ID)),
-                cursor.getString(cursor.getColumnIndex(COLUMNS_NAME)),
-                cursor.getString(cursor.getColumnIndex(COLUMNS_LOGIN)),
-                cursor.getString(cursor.getColumnIndex(COLUMNS_PASSWORD))
+                cursor.getInt(cursor.getColumnIndex(COLUMNS.ID)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS.NAME)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS.LOGIN)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS.PASSWORD))
             )
 
             keyList.add(key)
@@ -115,7 +119,8 @@ class SQLite(
 
     fun deleteKey(id: Int): Boolean {
 
-        val sql = "DELETE FROM $TABLE_NAME WHERE $COLUMNS_ID = ?"
+        val sql = "DELETE FROM ${TABLE_NAME} WHERE ${COLUMNS.ID}" +
+                "ID = ?"
         val args = arrayOf("$id")
 
         try {
@@ -131,12 +136,12 @@ class SQLite(
 
     fun updateKey(key: KeyVO): Boolean {
 
-        val sql = "UPDATE $TABLE_NAME" +
+        val sql = "UPDATE ${TABLE_NAME}" +
                 " SET" +
-                "$COLUMNS_NAME = ?" +
-                "$COLUMNS_LOGIN = ?" +
-                "$COLUMNS_PASSWORD = ?" +
-                " WHERE $COLUMNS_ID = ? "
+                "${COLUMNS.NAME} = ?" +
+                "${COLUMNS.LOGIN} = ?" +
+                "${COLUMNS.PASSWORD} = ?" +
+                " WHERE ${COLUMNS.ID} = ? "
         val args = arrayOf(
             key.title,
             key.login,
@@ -160,9 +165,9 @@ class SQLite(
 
         var content = ContentValues()
 
-        content.put(COLUMNS_NAME, key.title)
-        content.put(COLUMNS_LOGIN, key.login)
-        content.put(COLUMNS_PASSWORD, key.password)
+        content.put(COLUMNS.NAME, key.title)
+        content.put(COLUMNS.LOGIN, key.login)
+        content.put(COLUMNS.PASSWORD, key.password)
 
         return content;
     }
