@@ -28,16 +28,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/background_shadow"
-        android:shadowColor="#000"
-        android:shadowDx="10dp"
-        android:shadowDy="10dp"
-        android:shadowRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +58,7 @@
 
         <EditText
             android:id="@+id/editText5"
-            android:layout_width="0"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
@@ -80,16 +76,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/background_shadow"
-        android:shadowColor="#000"
-        android:shadowDx="10dp"
-        android:shadowDy="10dp"
-        android:shadowRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +106,7 @@
 
         <EditText
             android:id="@+id/editText2"
-            android:layout_width="0"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
@@ -130,16 +122,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/background_shadow"
-        android:shadowColor="#000"
-        android:shadowDx="10dp"
-        android:shadowDy="10dp"
-        android:shadowRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +152,7 @@
 
         <EditText
             android:id="@+id/editText3"
-            android:layout_width="0"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
