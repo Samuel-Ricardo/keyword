@@ -5,9 +5,9 @@
         <shape android:shape="rectangle">
             <padding
                 android:bottom="3dp"
-                android:left="0dp"
+                android:left="1dp"
                 android:right="3dp"
-                android:top="0dp" />
+                android:top="1dp" />
             <solid android:color="#00000000" />
             <corners android:radius="10dp" />
         </shape>
@@ -15,10 +15,10 @@
     <item>
         <shape android:shape="rectangle">
             <padding
-                android:bottom="3dp"
-                android:left="0dp"
-                android:right="3dp"
-                android:top="0dp" />
+                android:bottom="2dp"
+                android:left="1dp"
+                android:right="2dp"
+                android:top="1dp" />
             <solid android:color="#10000000" />
             <corners android:radius="10dp" />
         </shape>
@@ -26,10 +26,10 @@
     <item>
         <shape android:shape="rectangle">
             <padding
-                android:bottom="3dp"
-                android:left="0dp"
-                android:right="3dp"
-                android:top="0dp" />
+                android:bottom="2dp"
+                android:left="1dp"
+                android:right="2dp"
+                android:top="1dp"  />
             <solid android:color="#20000000" />
             <corners android:radius="10dp" />
         </shape>
@@ -37,10 +37,10 @@
     <item>
         <shape android:shape="rectangle">
             <padding
-                android:bottom="3dp"
-                android:left="0dp"
-                android:right="3dp"
-                android:top="0dp" />
+                android:bottom="2dp"
+                android:left="1dp"
+                android:right="2dp"
+                android:top="1dp"  />
             <solid android:color="#30000000" />
             <corners android:radius="10dp" />
         </shape>
@@ -48,10 +48,10 @@
     <item>
         <shape android:shape="rectangle">
             <padding
-                android:bottom="3dp"
-                android:left="0dp"
-                android:right="3dp"
-                android:top="0dp" />
+                android:bottom="2dp"
+                android:left="1dp"
+                android:right="2dp"
+                android:top="1dp"  />
             <solid android:color="#50000000" />
             <corners android:radius="10dp" />
         </shape>
