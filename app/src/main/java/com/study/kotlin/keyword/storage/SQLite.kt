@@ -6,6 +6,8 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.study.kotlin.keyword.model.KeyVO
+import com.study.kotlin.keyword.singleton.DatabaseConstats.COLUMNS_ID
+import com.study.kotlin.keyword.singleton.DatabaseConstats.*
 
 class SQLite(
     context: Context
@@ -21,23 +23,7 @@ class SQLite(
         private val CURRENT_VERSION = 1
     }
 
-    val TABLE_NAME = "key"
 
-    val COLUMNS_ID = "id"
-    val COLUMNS_NAME = "name"
-    val COLUMNS_LOGIN = "login"
-    val COLUMNS_PASSWORD = "password"
-
-    val SELECT_ALL = "SELECT * FROM $TABLE_NAME"
-    val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
-    val CREATE_TABLE = "CREATE TABLE $TABLE_NAME (" +
-            "$COLUMNS_ID INTEGER NOT NULL," +
-            "$COLUMNS_NAME TEXT NOT NULL," +
-            "$COLUMNS_LOGIN TEXT NOT NULL," +
-            "$COLUMNS_PASSWORD TEXT NOT NULL," +
-            "" +
-            "PRIMARY KEY($COLUMNS_ID AUTOINCREMENT)" +
-            ")"
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(CREATE_TABLE)
@@ -55,8 +41,9 @@ class SQLite(
         onCreate(database)
     }
 
-    fun getById(){
+    fun getById(): KeyVO?{
 
+        return null
     }
 
     fun generateKey(cursor:Cursor): MutableList<KeyVO> {

@@ -31,7 +31,7 @@ class CreateKeyActivity: BaseActivity() {
         val password = editTextPassword.text.toString()
 
         Thread(Runnable {
-            if()
+
         })
     }
 }
