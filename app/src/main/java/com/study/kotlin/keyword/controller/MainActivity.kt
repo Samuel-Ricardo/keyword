@@ -15,7 +15,7 @@ class MainActivity : BaseActivity() {
 
     fun nextPage(view: View) {
 
-        val intent: Intent = Intent(this, KeyListActivity::class.java)
-        startActivity(intent);
+        val itent:Intent = Intent(this, KeyListActivity::class.java);
+        startActivity(itent);
     }
 }

@@ -13,7 +13,7 @@ public class KeyListActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.key_list)
-        setupToolBar(toolBar, "Lista de Chaves", false)
+       // setupToolBar(toolBar, "Lista de Chaves", false)
     }
 
     fun goToCreate(view: View) {
