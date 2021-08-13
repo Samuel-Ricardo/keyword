@@ -1,6 +1,7 @@
 package com.study.kotlin.keyword.storage
 
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class SQLite(
@@ -31,4 +32,8 @@ class SQLite(
             "" +
             "PRIMARY KEY($COLUMNS_ID AUTOINCREMENT)" +
             ")"
+
+    override fun onCreate(db: SQLiteDatabase?) {
+        db?.execSQL(CREATE_TABLE)
+    }
 }
