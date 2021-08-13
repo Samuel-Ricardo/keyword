@@ -2,6 +2,7 @@ package com.study.kotlin.keyword.storage
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.study.kotlin.keyword.model.KeyVO
@@ -21,10 +22,13 @@ class SQLite(
     }
 
     val TABLE_NAME = "key"
+
     val COLUMNS_ID = "id"
     val COLUMNS_NAME = "name"
     val COLUMNS_LOGIN = "login"
     val COLUMNS_PASSWORD = "password"
+
+    val SELECT_ALL = "SELECT * FROM $TABLE_NAME"
     val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
     val CREATE_TABLE = "CREATE TABLE $TABLE_NAME (" +
             "$COLUMNS_ID INTEGER NOT NULL," +
@@ -49,6 +53,57 @@ class SQLite(
             database?.execSQL(DROP_TABLE)
         }
         onCreate(database)
+    }
+
+    fun getById(){
+
+    }
+
+    fun generateKey(cursor:Cursor): MutableList<KeyVO> {
+
+        val keyList = mutableListOf<KeyVO>()
+
+        while (cursor.moveToNext()){
+
+            var key = KeyVO(
+                cursor.getInt(cursor.getColumnIndex(COLUMNS_ID)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_NAME)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_LOGIN)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_PASSWORD))
+            )
+
+            keyList.add(key)
+        }
+
+        return keyList;
+    }
+
+    fun selectAll(search: String): List<KeyVO> {
+
+        val database = readableDatabase ?: return mutableListOf()
+        var args: Array<String> = arrayOf()
+
+        try {
+
+            var cursor = database.rawQuery(
+                SELECT_ALL,
+                args)
+
+            if (cursor == null) {
+                database.close()
+                return mutableListOf()
+            }
+
+
+            var keyList = generateKey(cursor)
+
+            database.close();
+            return keyList;
+        }catch (ex:Exception){
+
+            database.close();
+            return mutableListOf();
+        }
     }
 
     fun saveKey(key: KeyVO): Boolean {

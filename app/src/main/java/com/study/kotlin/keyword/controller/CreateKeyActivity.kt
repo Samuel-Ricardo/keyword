@@ -30,5 +30,8 @@ class CreateKeyActivity: BaseActivity() {
         val login = editTextLogin.text.toString()
         val password = editTextPassword.text.toString()
 
+        Thread(Runnable {
+            if()
+        })
     }
 }
