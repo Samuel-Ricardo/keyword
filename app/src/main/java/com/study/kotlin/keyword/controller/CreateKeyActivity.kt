@@ -53,19 +53,29 @@ class CreateKeyActivity : BaseActivity() {
                     finish()
                 }
             }).start()
-        }
+    }
 
 
-    public fun onDeletePress(view: View){
+    public fun onDeletePress(view: View) {
         isInProgress(true)
         if (selectedKey != null) {
 
+            Thread(Runnable {
+                KeywordApplication.
+                    instance.
+                        database?.
+                            deleteKey(selectedKey!!.id ?: -1);
+                ;
+                runOnUiThread {
+                    isInProgress(false)
+                }
+            })
         }
     }
 
-    private fun isInProgress(Is:Boolean){
+    private fun isInProgress(Is: Boolean) {
 
-        if (Is == true){
+        if (Is) {
             progressBar2.visibility = View.VISIBLE
         } else {
             progressBar2.visibility = View.GONE
