@@ -107,6 +107,21 @@ class SQLite(
 
         val database = writableDatabase
 
+        if (getById(key.id) != null) {
+
+            try {
+
+                val isUpdated = updateKey(key)
+
+                database.close();
+                return isUpdated;
+            } catch (ex: Exception) {
+
+                database.close();
+                return false;
+            }
+        }
+
         try {
             database.insert(
                 TABLE_NAME,
@@ -114,14 +129,13 @@ class SQLite(
                 getContentFrom(key)
             )
 
+            database.close();
+            return true;
         } catch (ex: Exception) {
 
             database.close();
             return false;
         }
-
-        database.close();
-        return true;
     }
 
     fun deleteKey(id: Int): Boolean {
