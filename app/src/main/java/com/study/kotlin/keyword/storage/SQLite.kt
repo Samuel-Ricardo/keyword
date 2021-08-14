@@ -12,6 +12,8 @@ import com.study.kotlin.keyword.singleton.database.SQL.CREATE_TABLE
 import com.study.kotlin.keyword.singleton.database.SQL.DELETE_BY_ID
 import com.study.kotlin.keyword.singleton.database.SQL.DROP_TABLE
 import com.study.kotlin.keyword.singleton.database.SQL.SELECT_ALL
+import com.study.kotlin.keyword.singleton.database.SQL.SELECT_BY_ID
+import com.study.kotlin.keyword.singleton.database.SQL.UPDATE_BY_ID
 
 class SQLite(
     context: Context
@@ -45,28 +47,32 @@ class SQLite(
         onCreate(database)
     }
 
-    fun getById(): KeyVO?{
+    fun getById(id: Int): KeyVO?{
 
-        return null
-    }
+        val database = readableDatabase ?: return null
+        var args = arrayOf("$id")
 
-    fun generateKey(cursor:Cursor): MutableList<KeyVO> {
+        try {
 
-        val keyList = mutableListOf<KeyVO>()
-
-        while (cursor.moveToNext()){
-
-            var key = KeyVO(
-                cursor.getInt(cursor.getColumnIndex(COLUMNS.ID)),
-                cursor.getString(cursor.getColumnIndex(COLUMNS.NAME)),
-                cursor.getString(cursor.getColumnIndex(COLUMNS.LOGIN)),
-                cursor.getString(cursor.getColumnIndex(COLUMNS.PASSWORD))
+            var cursor = database.rawQuery(
+                SELECT_BY_ID,
+                args
             )
 
-            keyList.add(key)
-        }
+            if (cursor == null) {
+                database.close()
+                return null
+            }
 
-        return keyList;
+            var key = generateKey(cursor).get(0)
+
+            database.close();
+            return key;
+        }catch (ex:Exception){
+
+            database.close();
+            return null
+        }
     }
 
     fun selectAll(search: String): List<KeyVO> {
@@ -135,12 +141,6 @@ class SQLite(
 
     fun updateKey(key: KeyVO): Boolean {
 
-        val sql = "UPDATE ${TABLE_NAME}" +
-                " SET" +
-                "${COLUMNS.NAME} = ?" +
-                "${COLUMNS.LOGIN} = ?" +
-                "${COLUMNS.PASSWORD} = ?" +
-                " WHERE ${COLUMNS.ID} = ? "
         val args = arrayOf(
             key.title,
             key.login,
@@ -150,7 +150,7 @@ class SQLite(
 
         try {
 
-            execSQL(sql, args)
+            execSQL(UPDATE_BY_ID, args)
 
             return true
         } catch (ex: Exception) {
@@ -179,5 +179,24 @@ class SQLite(
 
         database.execSQL(sql, args)
         database.close()
+    }
+
+    fun generateKey(cursor:Cursor): MutableList<KeyVO> {
+
+        val keyList = mutableListOf<KeyVO>()
+
+        while (cursor.moveToNext()){
+
+            var key = KeyVO(
+                cursor.getInt(cursor.getColumnIndex(COLUMNS.ID)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS.NAME)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS.LOGIN)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS.PASSWORD))
+            )
+
+            keyList.add(key)
+        }
+
+        return keyList;
     }
 }
