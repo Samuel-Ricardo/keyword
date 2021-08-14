@@ -22,6 +22,13 @@ class CreateKeyActivity : BaseActivity() {
 
     private fun setupThis() {
 
+        if(selectedKey != null) {
+
+            editTextName.setText(selectedKey!!.title)
+            editTextLogin.setText(selectedKey!!.login)
+            editTextPassword.setText(selectedKey!!.password)
+        }
+
         progressBar2.visibility = View.GONE
 
     }
@@ -70,7 +77,6 @@ class CreateKeyActivity : BaseActivity() {
             }).start()
     }
 
-
     public fun onDeletePress(view: View) {
         isInProgress(true)
 
@@ -81,9 +87,9 @@ class CreateKeyActivity : BaseActivity() {
                 var message = "";
 
                if (KeywordApplication.instance.database?.deleteKey(selectedKey!!.id ?: -1)!!){
-                   message = "Chave ${selectedKey.title} foi excluida com Sucesso"
+                   message = "Chave ${selectedKey?.title} foi excluida com Sucesso"
                } else {
-                   message = "Chave ${selectedKey.title} não foi excluida ;-;"
+                   message = "Chave ${selectedKey?.title} não foi excluida ;-;"
                }
 
                 runOnUiThread {
