@@ -8,26 +8,26 @@ import com.study.kotlin.keyword.controller.base.BaseActivity
 import com.study.kotlin.keyword.model.KeyVO
 import kotlinx.android.synthetic.main.create_key.*
 
-class CreateKeyActivity: BaseActivity() {
+class CreateKeyActivity : BaseActivity() {
 
-    private var keyId:Int = -1
+    private var keyId: Int = -1
     var selectedKey = KeyListActivity.selectedItem
 
-    override fun onCreate(savedInstanceState: Bundle?){
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_key)
         setupThis();
     }
 
-    private fun setupThis(){
+    private fun setupThis() {
 
         progressBar2.visibility = View.GONE
 
     }
 
-    public fun onSavePress(view: View){
+    public fun onSavePress(view: View) {
 
-        progressBar2.visibility = View.VISIBLE
+        isInProgress(true);
 
         val name = editTextName.text.toString()
         val login = editTextLogin.text.toString()
@@ -45,15 +45,30 @@ class CreateKeyActivity: BaseActivity() {
 
         if (key != null)
 
-        Thread(Runnable {
-            KeywordApplication.instance.database!!.saveKey(key)
+            Thread(Runnable {
+                KeywordApplication.instance.database!!.saveKey(key)
 
-            runOnUiThread{
-                progressBar2.visibility = View.GONE
-                finish()
-            }
-        }).start()
+                runOnUiThread {
+                    progressBar2.visibility = View.GONE
+                    finish()
+                }
+            }).start()
+        }
+
+
+    public fun onDeletePress(view: View){
+        isInProgress(true)
+        if (selectedKey != null) {
+
+        }
     }
 
+    private fun isInProgress(Is:Boolean){
 
+        if (Is == true){
+            progressBar2.visibility = View.VISIBLE
+        } else {
+            progressBar2.visibility = View.GONE
+        }
+    }
 }
