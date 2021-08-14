@@ -23,6 +23,8 @@ public class KeyListActivity: BaseActivity() {
 
     fun goToCreate(view: View) {
 
+        selectedItem = null;
+
         var intent:Intent = Intent(this, CreateKeyActivity::class.java)
         startActivity(intent);
     }
