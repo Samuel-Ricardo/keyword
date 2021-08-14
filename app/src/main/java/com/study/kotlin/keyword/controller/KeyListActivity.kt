@@ -6,9 +6,14 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.study.kotlin.keyword.R
 import com.study.kotlin.keyword.controller.base.BaseActivity
+import com.study.kotlin.keyword.model.KeyVO
 import kotlinx.android.synthetic.main.example_list.*
 
 public class KeyListActivity: BaseActivity() {
+
+    companion object {
+        var selectedItem:KeyVO? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
