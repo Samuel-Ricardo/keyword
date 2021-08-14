@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.study.kotlin.keyword.R
 import com.study.kotlin.keyword.application.KeywordApplication
+import com.study.kotlin.keyword.application.Menssager
 import com.study.kotlin.keyword.controller.base.BaseActivity
 import com.study.kotlin.keyword.model.KeyVO
 import kotlinx.android.synthetic.main.create_key.*
@@ -46,10 +47,24 @@ class CreateKeyActivity : BaseActivity() {
         if (key != null)
 
             Thread(Runnable {
-                KeywordApplication.instance.database!!.saveKey(key)
+
+                var message = "";
+
+                if(KeywordApplication.instance.database!!.saveKey(key)){
+                    message = "Chave ${key.title} foi salva com Sucesso"
+                } else {
+                    message = "Chave ${key.title} não foi salva ;-;"
+                }
 
                 runOnUiThread {
                     progressBar2.visibility = View.GONE
+                    Menssager.showDialog(
+                        this,
+                        "Armazenamento",
+                        message,
+                        message,
+                        ""
+                    )
                     finish()
                 }
             }).start()
@@ -58,16 +73,30 @@ class CreateKeyActivity : BaseActivity() {
 
     public fun onDeletePress(view: View) {
         isInProgress(true)
+
         if (selectedKey != null) {
 
             Thread(Runnable {
-                KeywordApplication.
-                    instance.
-                        database?.
-                            deleteKey(selectedKey!!.id ?: -1);
-                ;
+
+                var message = "";
+
+               if (KeywordApplication.instance.database?.deleteKey(selectedKey!!.id ?: -1)!!){
+                   message = "Chave ${selectedKey.title} foi excluida com Sucesso"
+               } else {
+                   message = "Chave ${selectedKey.title} não foi excluida ;-;"
+               }
+
                 runOnUiThread {
+
                     isInProgress(false)
+                    Menssager.showDialog(
+                        this,
+                        "Armazenamento",
+                        message,
+                        message,
+                        ""
+                    )
+                    finish()
                 }
             })
         }

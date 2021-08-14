@@ -5,7 +5,7 @@ import android.content.Context
 import android.widget.Toast
 import com.study.kotlin.keyword.interfaces.Function
 
-class Menssager {
+object Menssager {
 
     fun showDialog(
         context:Context,
