@@ -22,6 +22,8 @@ class CreateKeyActivity : BaseActivity() {
 
     private fun setupThis() {
 
+        keyId = intent.getIntExtra("index",-1);
+
         if(selectedKey != null) {
 
             editTextName.setText(selectedKey!!.title)

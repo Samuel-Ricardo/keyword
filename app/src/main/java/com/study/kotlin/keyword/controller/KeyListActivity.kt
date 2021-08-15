@@ -42,4 +42,12 @@ public class KeyListActivity: BaseActivity() {
         var intent:Intent = Intent(this, CreateKeyActivity::class.java)
         startActivity(intent);
     }
+
+    fun onItemClick(index: Int) {
+        val intent = Intent(this, CreateKeyActivity::class.java)
+
+        intent.putExtra("index", index)
+
+        startActivity(intent);
+    }
 }
