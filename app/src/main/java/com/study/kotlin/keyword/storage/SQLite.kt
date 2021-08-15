@@ -11,6 +11,7 @@ import com.study.kotlin.keyword.singleton.database.DatabaseConstats.TABLE_NAME
 import com.study.kotlin.keyword.singleton.database.SQL.CREATE_TABLE
 import com.study.kotlin.keyword.singleton.database.SQL.DELETE_BY_ID
 import com.study.kotlin.keyword.singleton.database.SQL.DROP_TABLE
+import com.study.kotlin.keyword.singleton.database.SQL.SELECT
 import com.study.kotlin.keyword.singleton.database.SQL.SELECT_ALL
 import com.study.kotlin.keyword.singleton.database.SQL.SELECT_BY_ID
 import com.study.kotlin.keyword.singleton.database.SQL.UPDATE_BY_ID
@@ -75,7 +76,7 @@ class SQLite(
         }
     }
 
-    fun selectAll(search: String): List<KeyVO> {
+    fun selectAll(): List<KeyVO> {
 
         val database = readableDatabase ?: return mutableListOf()
         var args: Array<String> = arrayOf()
@@ -84,6 +85,34 @@ class SQLite(
 
             var cursor = database.rawQuery(
                 SELECT_ALL,
+                args)
+
+            if (cursor == null) {
+                database.close()
+                return mutableListOf()
+            }
+
+
+            var keyList = generateKey(cursor)
+
+            database.close();
+            return keyList;
+        }catch (ex:Exception){
+
+            database.close();
+            return mutableListOf();
+        }
+    }
+
+    fun select(search: String): List<KeyVO> {
+
+        val database = readableDatabase ?: return mutableListOf()
+        var args: Array<String> = arrayOf(search, search, search)
+
+        try {
+
+            var cursor = database.rawQuery(
+                SELECT,
                 args)
 
             if (cursor == null) {
