@@ -3,7 +3,6 @@ package com.study.kotlin.keyword.controller;
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.study.kotlin.keyword.R
 import com.study.kotlin.keyword.adapter.KeyAdapter
@@ -28,7 +27,7 @@ public class KeyListActivity: BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        search()
+        onClickSearch()
     }
 
     private fun setup(){
@@ -43,11 +42,23 @@ public class KeyListActivity: BaseActivity() {
         startActivity(intent);
     }
 
-    fun onItemClick(index: Int) {
+    fun onClickItem(index: Int) {
         val intent = Intent(this, CreateKeyActivity::class.java)
 
         intent.putExtra("index", index)
 
         startActivity(intent);
+    }
+
+    fun search(){
+
+        val search = editTextSearch.text.toString();
+
+
+    }
+
+    fun onClickSearch(view: View) {
+
+        search();
     }
 }
