@@ -14,16 +14,16 @@ import kotlinx.android.synthetic.main.create_key.*
 import kotlinx.android.synthetic.main.example_list.*
 import kotlinx.android.synthetic.main.key_list.*
 
-public class KeyListActivity: BaseActivity() {
+public class KeyListActivity : BaseActivity() {
 
-    private var adapter:KeyAdapter? = null;
+    private var adapter: KeyAdapter? = null;
     private val database = KeywordApplication.instance.database
 
     companion object {
-        var selectedItem:KeyVO? = null
+        var selectedItem: KeyVO? = null
     }
 
-    override fun onCreate(savedInstanceState: Bundle?){
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.key_list)
         setupToolBar(toolBar, "Lista de Chaves", false)
@@ -31,10 +31,10 @@ public class KeyListActivity: BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        onClickSearch()
+        search();
     }
 
-    private fun setup(){
+    private fun setup() {
         recyclerView2.layoutManager = LinearLayoutManager(this)
     }
 
@@ -42,7 +42,7 @@ public class KeyListActivity: BaseActivity() {
 
         selectedItem = null;
 
-        var intent:Intent = Intent(this, CreateKeyActivity::class.java)
+        var intent: Intent = Intent(this, CreateKeyActivity::class.java)
         startActivity(intent);
     }
 
@@ -54,7 +54,7 @@ public class KeyListActivity: BaseActivity() {
         startActivity(intent);
     }
 
-    fun search(){
+    fun search() {
 
         isInProgress(true);
 
@@ -63,19 +63,19 @@ public class KeyListActivity: BaseActivity() {
         Thread(Runnable {
 
             runOnUiThread {
-                Toast.makeText(this,"Buscando por $search",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Buscando por $search", Toast.LENGTH_SHORT).show()
             }
 
-            var filteredList:List<KeyVO> = mutableListOf();
+            var filteredList: List<KeyVO> = mutableListOf();
 
-            try{
-                filteredList = database?.select(search); ?: mutableListOf<KeyVO>()
-            }catch (ex: Exception){
+            try {
+                filteredList = database?.select(search) ?: mutableListOf<KeyVO>()
+            } catch (ex: Exception) {
                 ex.printStackTrace();
             }
 
-            runOnUiThread{
-                adapter = KeyAdapter(this,filteredList) {onClickItem(it)}
+            runOnUiThread {
+                adapter = KeyAdapter(this, filteredList) { onClickItem(it) }
 
                 recyclerView2.adapter = adapter;
 

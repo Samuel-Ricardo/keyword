@@ -1,11 +1,14 @@
 package com.study.kotlin.keyword.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.study.kotlin.keyword.R
+import com.study.kotlin.keyword.controller.CreateKeyActivity
 import com.study.kotlin.keyword.controller.KeyListActivity
 import com.study.kotlin.keyword.model.KeyVO
 import kotlinx.android.synthetic.main.key_item.view.*
@@ -36,6 +39,9 @@ class KeyAdapter(
 
             this.setOnClickListener {
                 KeyListActivity.selectedItem = key
+
+                val intent = Intent(this.context, CreateKeyActivity::class.java)
+                ContextCompat.startActivity(this.context, intent, null);
             }
         }
     }
