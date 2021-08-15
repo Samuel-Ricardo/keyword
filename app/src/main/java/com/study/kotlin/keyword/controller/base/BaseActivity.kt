@@ -4,13 +4,12 @@ import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.study.kotlin.keyword.R
-import kotlinx.android.synthetic.main.example_list.*
 
 open class BaseActivity : AppCompatActivity() {
 
     protected fun setupToolBar(toolbar: Toolbar, title:String, navigationBack: Boolean){
-        toolBar.title = title
-        setSupportActionBar(toolBar)
+        toolbar.title = title
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(navigationBack)
     }
 

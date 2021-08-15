@@ -11,13 +11,12 @@ import com.study.kotlin.keyword.application.KeywordApplication
 import com.study.kotlin.keyword.controller.base.BaseActivity
 import com.study.kotlin.keyword.model.KeyVO
 import kotlinx.android.synthetic.main.create_key.*
-import kotlinx.android.synthetic.main.example_list.*
 import kotlinx.android.synthetic.main.key_list.*
 
 public class KeyListActivity : BaseActivity() {
 
     private var adapter: KeyAdapter? = null;
-    private val database = KeywordApplication.instance.database
+   // private val database = KeywordApplication.instance.database
 
     companion object {
         var selectedItem: KeyVO? = null
@@ -26,7 +25,7 @@ public class KeyListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.key_list)
-        setupToolBar(toolBar, "Lista de Chaves", false)
+        setupToolBar(toolbar, "Lista de Chaves", false)
     }
 
     override fun onResume() {
@@ -69,7 +68,7 @@ public class KeyListActivity : BaseActivity() {
             var filteredList: List<KeyVO> = mutableListOf();
 
             try {
-                filteredList = database?.select(search) ?: mutableListOf<KeyVO>()
+                filteredList = KeywordApplication.instance.database?.select(search) ?: mutableListOf<KeyVO>()
             } catch (ex: Exception) {
                 ex.printStackTrace();
             }

@@ -20,7 +20,7 @@ object Menssager {
         builder.setTitle(title)
         builder.setMessage(message)
 
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+        builder.setPositiveButton(android.R.string.yes) { _, which ->
             Toast.makeText(context,
                 positiveButtonMessage, Toast.LENGTH_SHORT).show()
         }
