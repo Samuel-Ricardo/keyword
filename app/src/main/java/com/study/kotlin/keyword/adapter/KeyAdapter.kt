@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.study.kotlin.keyword.R
+import com.study.kotlin.keyword.controller.KeyListActivity
 import com.study.kotlin.keyword.model.KeyVO
+import kotlinx.android.synthetic.main.key_item.view.*
 
 class KeyAdapter(
     private val context: Context,
@@ -24,6 +26,18 @@ class KeyAdapter(
 
     override fun onBindViewHolder(holder: KeyViewHolder, position: Int) {
 
+        val key = keyList[position]
+
+        with(holder.itemView){
+
+            textViewTitle.text = key.title;
+            textViewLogin.text = key.login;
+            textViewPassword.text = key.password;
+
+            this.setOnClickListener {
+                KeyListActivity.selectedItem = key
+            }
+        }
     }
 }
 
