@@ -10,7 +10,7 @@ class KeywordApplication: Application() {
         private set
 
     companion object {
-        lateinit var instance: KeywordApplication
+        lateinit var instance: KeywordApplication;
     }
 
     override fun onCreate() {

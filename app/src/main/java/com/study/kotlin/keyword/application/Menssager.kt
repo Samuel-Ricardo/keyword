@@ -2,6 +2,7 @@ package com.study.kotlin.keyword.application
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.widget.Toast
 import com.study.kotlin.keyword.interfaces.Function
 
@@ -53,6 +54,27 @@ object Menssager {
         builder.setNegativeButton(android.R.string.no) { dialog, which ->
             negativeButtonAction.run()
         }
+
+        builder.show();
+    }
+
+    fun showMessage(
+        context:Context,
+        title:String,
+        message:String,
+    ){
+
+        val builder = AlertDialog.Builder(context)
+
+        builder.setTitle(title)
+        builder.setMessage(message)
+
+        builder.setPositiveButton(
+            "Ok",
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.dismiss();
+            }
+        )
 
         builder.show();
     }

@@ -5,9 +5,9 @@ package com.study.kotlin.keyword.singleton.database
 object SQL {
 
     val SELECT = "SELECT * FROM ${DatabaseConstats.TABLE_NAME} WHERE " +
-            "${COLUMNS.NAME} LIKE %?% " +
-            "OR ${COLUMNS.LOGIN} LIKE %?%" +
-            "OR ${COLUMNS.PASSWORD} LIKE %?%";
+            "${COLUMNS.NAME} LIKE ? " +
+            "OR ${COLUMNS.LOGIN} LIKE ?" +
+            "OR ${COLUMNS.PASSWORD} LIKE ?";
 
     val SELECT_ALL = "SELECT * FROM ${DatabaseConstats.TABLE_NAME}";
     val SELECT_BY_ID = "SELECT * FROM ${DatabaseConstats.TABLE_NAME} WHERE ${COLUMNS.ID} = ?";

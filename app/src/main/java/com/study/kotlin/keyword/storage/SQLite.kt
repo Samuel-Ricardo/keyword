@@ -50,28 +50,36 @@ class SQLite(
 
     fun getById(id: Int): KeyVO?{
 
-        val database = readableDatabase ?: return null
+        val db = readableDatabase ?: return null
         var args = arrayOf("$id")
+        var key: KeyVO? = null
 
         try {
 
-            var cursor = database.rawQuery(
+            var cursor = db.rawQuery(
                 SELECT_BY_ID,
                 args
             )
 
             if (cursor == null) {
-                database.close()
+                db.close()
                 return null
             }
 
-            var key = generateKey(cursor).get(0)
+            var keys = generateKey(cursor)
 
-            database.close();
+
+            if (keys.size > 0){
+
+                key = keys.get(0);
+            }
+
+            db.close();
             return key;
         }catch (ex:Exception){
 
-            database.close();
+            ex.printStackTrace()
+            db.close();
             return null
         }
     }
@@ -99,6 +107,7 @@ class SQLite(
             return keyList;
         }catch (ex:Exception){
 
+            ex.printStackTrace()
             database.close();
             return mutableListOf();
         }
@@ -127,6 +136,7 @@ class SQLite(
             return keyList;
         }catch (ex:Exception){
 
+            ex.printStackTrace()
             database.close();
             return mutableListOf();
         }
@@ -146,22 +156,26 @@ class SQLite(
                 return isUpdated;
             } catch (ex: Exception) {
 
+                ex.printStackTrace()
                 database.close();
                 return false;
             }
         }
 
         try {
-            database.insert(
+            val database2 = writableDatabase
+
+            database2.insert(
                 TABLE_NAME,
                 null,
                 getContentFrom(key)
             )
 
-            database.close();
+            database2.close();
             return true;
         } catch (ex: Exception) {
 
+            ex.printStackTrace()
             database.close();
             return false;
         }
@@ -178,6 +192,7 @@ class SQLite(
             return true
         } catch (ex: Exception) {
 
+            ex.printStackTrace()
             return false
         }
     }
@@ -188,7 +203,7 @@ class SQLite(
             key.title,
             key.login,
             key.password,
-            key.id,
+            "${key.id}",
         )
 
         try {
@@ -198,6 +213,7 @@ class SQLite(
             return true
         } catch (ex: Exception) {
 
+            ex.printStackTrace()
             return false
         }
     }

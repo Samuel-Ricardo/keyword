@@ -20,11 +20,15 @@ class CreateKeyActivity : BaseActivity() {
         setupThis();
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
     private fun setupThis() {
 
-        keyId = intent.getIntExtra("index",-1);
+        keyId = intent.getIntExtra("index", -1);
 
-        if(selectedKey != null) {
+        if (selectedKey != null) {
 
             editTextName.setText(selectedKey!!.title)
             editTextLogin.setText(selectedKey!!.login)
@@ -36,77 +40,97 @@ class CreateKeyActivity : BaseActivity() {
     }
 
     public fun onSavePress(view: View) {
+        try {
+            isInProgress(true);
 
-        isInProgress(true);
-
-        val name = editTextName.text.toString()
-        val login = editTextLogin.text.toString()
-        val password = editTextPassword.text.toString()
+            val name = editTextName.text.toString()
+            val login = editTextLogin.text.toString()
+            val password = editTextPassword.text.toString()
 
 
-        var id = selectedKey?.id ?: -1
+            var id = selectedKey?.id ?: -1
 
-        var key = KeyVO(
-            id,
-            name,
-            login,
-            password
-        )
+            var key = KeyVO(
+                id,
+                name,
+                login,
+                password
+            )
 
-        if (key != null)
+            if (key != null) {
 
-            Thread(Runnable {
+                Thread(Runnable {
 
-                var message = "";
+                    var message = "";
 
-                if(KeywordApplication.instance.database!!.saveKey(key)){
-                    message = "Chave ${key.title} foi salva com Sucesso"
-                } else {
-                    message = "Chave ${key.title} não foi salva ;-;"
-                }
+                    if (KeywordApplication.instance.database!!.saveKey(key)) {
+                        message = "Chave ${key.title} foi salva com Sucesso"
+                    } else {
+                        message = "Chave ${key.title} não foi salva ;-;"
+                    }
 
-                runOnUiThread {
-                    progressBar2.visibility = View.GONE
-                    Menssager.showDialog(
-                        this,
-                        "Armazenamento",
-                        message,
-                        message,
-                        ""
-                    )
-                    finish()
-                }
-            }).start()
+                    runOnUiThread {
+                        progressBar2.visibility = View.GONE
+                        Menssager.showDialog(
+                            this,
+                            "Armazenamento",
+                            message,
+                            message,
+                            ""
+                        )
+                        finish()
+                    }
+                }).start()
+            }
+        } catch (ex: Exception) {
+
+            ex.printStackTrace();
+        }
     }
 
     public fun onDeletePress(view: View) {
-        isInProgress(true)
 
-        if (selectedKey != null) {
+        try {
 
-            Thread(Runnable {
+            isInProgress(true)
 
-                var message = "";
+            if (selectedKey != null) {
 
-               if (KeywordApplication.instance.database?.deleteKey(selectedKey!!.id ?: -1)!!){
-                   message = "Chave ${selectedKey?.title} foi excluida com Sucesso"
-               } else {
-                   message = "Chave ${selectedKey?.title} não foi excluida ;-;"
-               }
+                Thread(Runnable {
 
-                runOnUiThread {
+                    var message = "";
 
-                    isInProgress(false)
-                    Menssager.showDialog(
-                        this,
-                        "Armazenamento",
-                        message,
-                        message,
-                        ""
-                    )
-                    finish()
-                }
-            })
+                    if (KeywordApplication.instance.database?.deleteKey(selectedKey!!.id ?: -1)!!) {
+                        message = "Chave ${selectedKey?.title} foi excluida com Sucesso"
+                    } else {
+                        message = "Chave ${selectedKey?.title} não foi excluida ;-;"
+                    }
+
+                    runOnUiThread {
+
+                        isInProgress(false)
+                        Menssager.showDialog(
+                            this,
+                            "Armazenamento",
+                            message,
+                            message,
+                            ""
+                        )
+                        finish()
+                    }
+                })
+            } else {
+                isInProgress(false)
+                Menssager.showMessage(
+                    this,
+                    "Armazenamento",
+                    "Não foi Possível Deletar",
+                )
+            }
+
+        } catch (ex: Exception) {
+
+            ex.printStackTrace();
         }
     }
 

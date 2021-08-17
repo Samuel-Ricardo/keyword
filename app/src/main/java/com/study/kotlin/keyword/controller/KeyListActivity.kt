@@ -26,6 +26,7 @@ public class KeyListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.key_list)
         setupToolBar(toolbar, "Lista de Chaves", false)
+        setup();
     }
 
     override fun onResume() {
