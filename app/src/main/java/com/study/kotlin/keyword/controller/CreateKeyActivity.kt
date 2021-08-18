@@ -118,7 +118,7 @@ class CreateKeyActivity : BaseActivity() {
                         )
                         finish()
                     }
-                })
+                }).start()
             } else {
                 isInProgress(false)
                 Menssager.showMessage(

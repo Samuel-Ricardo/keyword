@@ -191,13 +191,7 @@ class SQLite(
 
         try {
 
-            //execSQL(DELETE_BY_ID, args)
-
-            val database = writableDatabase
-
-            database.execSQL(DELETE_BY_ID, args)
-            database.close()
-
+            execSQL(DELETE_BY_ID, args)
             return true
         } catch (ex: Exception) {
 
