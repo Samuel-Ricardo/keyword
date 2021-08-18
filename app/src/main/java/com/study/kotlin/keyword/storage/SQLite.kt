@@ -27,9 +27,8 @@ class SQLite(
 
     companion object {
         private const val DATABASE_NAME = "keyword.db"
-        private const val CURRENT_VERSION = 1
+        private const val CURRENT_VERSION = 2
     }
-
 
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -48,7 +47,7 @@ class SQLite(
         onCreate(database)
     }
 
-    fun getById(id: Int): KeyVO?{
+    fun getById(id: Int): KeyVO? {
 
         val db = readableDatabase ?: return null
         var args = arrayOf("$id")
@@ -69,14 +68,14 @@ class SQLite(
             var keys = generateKey(cursor)
 
 
-            if (keys.size > 0){
+            if (keys.size > 0) {
 
                 key = keys.get(0);
             }
 
             db.close();
             return key;
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
 
             ex.printStackTrace()
             db.close();
@@ -93,7 +92,8 @@ class SQLite(
 
             var cursor = database.rawQuery(
                 SELECT_ALL,
-                args)
+                args
+            )
 
             if (cursor == null) {
                 database.close()
@@ -105,7 +105,7 @@ class SQLite(
 
             database.close();
             return keyList;
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
 
             ex.printStackTrace()
             database.close();
@@ -116,13 +116,14 @@ class SQLite(
     fun select(search: String): List<KeyVO> {
 
         val database = readableDatabase ?: return mutableListOf()
-        var args: Array<String> = arrayOf(search, search, search)
+        var args: Array<String> = arrayOf("%$search%", "%$search%", "%$search%")
 
         try {
 
             var cursor = database.rawQuery(
                 SELECT,
-                args)
+                args
+            )
 
             if (cursor == null) {
                 database.close()
@@ -134,7 +135,7 @@ class SQLite(
 
             database.close();
             return keyList;
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
 
             ex.printStackTrace()
             database.close();
@@ -165,11 +166,14 @@ class SQLite(
         try {
             val database2 = writableDatabase
 
-            database2.insert(
+
+            val RETURN = database2.insertOrThrow(
                 TABLE_NAME,
                 null,
                 getContentFrom(key)
             )
+
+            val result = getById(RETURN.toInt())
 
             database2.close();
             return true;
@@ -187,7 +191,12 @@ class SQLite(
 
         try {
 
-            execSQL(DELETE_BY_ID, args)
+            //execSQL(DELETE_BY_ID, args)
+
+            val database = writableDatabase
+
+            database.execSQL(DELETE_BY_ID, args)
+            database.close()
 
             return true
         } catch (ex: Exception) {
@@ -223,7 +232,7 @@ class SQLite(
 
         var content = ContentValues()
 
-        content.put(COLUMNS.NAME, key.title)
+        content.put(COLUMNS.TITLE, key.title)
         content.put(COLUMNS.LOGIN, key.login)
         content.put(COLUMNS.PASSWORD, key.password)
 
@@ -240,15 +249,15 @@ class SQLite(
         database.close()
     }
 
-    fun generateKey(cursor:Cursor): MutableList<KeyVO> {
+    fun generateKey(cursor: Cursor): MutableList<KeyVO> {
 
         val keyList = mutableListOf<KeyVO>()
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
 
             var key = KeyVO(
                 cursor.getInt(cursor.getColumnIndex(COLUMNS.ID)),
-                cursor.getString(cursor.getColumnIndex(COLUMNS.NAME)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS.TITLE)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS.LOGIN)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS.PASSWORD))
             )

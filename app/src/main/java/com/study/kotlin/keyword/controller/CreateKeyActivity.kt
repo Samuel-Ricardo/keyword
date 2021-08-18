@@ -78,7 +78,7 @@ class CreateKeyActivity : BaseActivity() {
                             message,
                             ""
                         )
-                        finish()
+                       // finish()
                     }
                 }).start()
             }

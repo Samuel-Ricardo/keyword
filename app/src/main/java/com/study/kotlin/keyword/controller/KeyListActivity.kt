@@ -68,11 +68,9 @@ public class KeyListActivity : BaseActivity() {
 
             var filteredList: List<KeyVO> = mutableListOf();
 
-            try {
+
                 filteredList = KeywordApplication.instance.database?.select(search) ?: mutableListOf<KeyVO>()
-            } catch (ex: Exception) {
-                ex.printStackTrace();
-            }
+
 
             runOnUiThread {
                 adapter = KeyAdapter(this, filteredList) { onClickItem(it) }

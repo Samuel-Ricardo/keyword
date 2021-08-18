@@ -27,50 +27,48 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="418dp"
-            android:layout_height="80dp"
-            android:layout_marginBottom="611dp"
-            android:background="@drawable/search_gradient_orange_purple"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_gradient_orange_purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <EditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="2dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+
+            android:textColor="#FFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageViewSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="3dp"
+            android:onClick="onClickSearch"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-            <EditText
-                android:id="@+id/editTextSearch"
-                android:layout_width="0dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="2dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Key..."
-                android:textColor="#FFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewSearch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <ImageView
-                android:id="@+id/imageViewSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="3dp"
-                android:onClick="onClickSearch"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editTextSearch"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/search_icon_whitte_64px" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toEndOf="@+id/editTextSearch"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/search_icon_whitte_64px" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/textView2"
@@ -86,17 +84,17 @@
             app:layout_constraintVertical_bias="0.976"
             tools:targetApi="o" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
-            android:layout_width="0dp"
-            android:layout_height="559dp"
-            android:layout_marginBottom="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="0.0" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -113,7 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.937"
-        app:srcCompat="@drawable/button_background" />
+        app:srcCompat="@android:drawable/ic_lock_lock" />
 
         <ProgressBar
             android:id="@+id/progressBar"

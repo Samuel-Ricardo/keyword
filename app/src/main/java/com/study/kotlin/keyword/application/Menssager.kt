@@ -21,12 +21,12 @@ object Menssager {
         builder.setTitle(title)
         builder.setMessage(message)
 
-        builder.setPositiveButton(android.R.string.yes) { _, which ->
+        builder.setPositiveButton("Ok") { _, which ->
             Toast.makeText(context,
                 positiveButtonMessage, Toast.LENGTH_SHORT).show()
         }
 
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+        builder.setNegativeButton("...") { dialog, which ->
             Toast.makeText(context,
                 negativeButtonMessage, Toast.LENGTH_SHORT).show()
         }
