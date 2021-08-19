@@ -38,3 +38,9 @@ Keyword is a native android app built with kotlin, it is an app whose function i
 
 
 <br>
+
+## 📱 Mobile - Initial Screen
+
+Mobile version 
+
+  > <p align="center"> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_7.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_8.jpeg"/> </p>
