@@ -51,12 +51,12 @@ Mobile version
 
 ## 📱 Mobile - Home / keyList
 
-Key List and search
+Key List and search, this list is generate in real time, on click in a item open the key editor for update or delete key, on click in blue floating button open the key creator.
 
   > <p align="center"> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_3.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_2.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_1.jpeg"/> </p>
 
-## 📱 Mobile - Home / keyList
+## 📱 Mobile - Key
 
-Key List and search
+Create, Update or Delete Key, the save key button automatically identifies if this key already exists and if it exists it updates the existing key, otherwise it creates a new key with the data.
 
   > <p align="center"> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_6.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_5.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_4.jpeg"/> </p>
