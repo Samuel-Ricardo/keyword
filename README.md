@@ -15,6 +15,8 @@ Keyword is a native android app built with kotlin, it is an app whose function i
 - Android
 - Kotlin
 - Storage
+- Real Time Search
+- Multi Thread
 - Offline / Local Storage
 - Relational Database
 - SQL
@@ -44,3 +46,17 @@ Keyword is a native android app built with kotlin, it is an app whose function i
 Mobile version 
 
   > <p align="center"> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_7.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_8.jpeg"/> </p>
+
+<br>
+
+## 📱 Mobile - Home / keyList
+
+Key List and search
+
+  > <p align="center"> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_3.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_2.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_1.jpeg"/> </p>
+
+## 📱 Mobile - Home / keyList
+
+Key List and search
+
+  > <p align="center"> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_6.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_5.jpeg"/> <img width="250px" src="https://github.com/Samuel-Ricardo/keyword/blob/master/Readme%20Files/Keyword_4.jpeg"/> </p>
