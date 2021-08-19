@@ -22,6 +22,7 @@ Keyword is a native android app built with kotlin, it is an app whose function i
 - SQL
 - SQLite Database
 - RecyclerView
+- FAB Button
 - Adapter
 - AlertDialog
 - Toast
